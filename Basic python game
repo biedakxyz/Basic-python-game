@@ -1,0 +1,205 @@
+import random
+x2 = 1
+y2 = 1
+
+xmax = random.randint(4,8)        
+ymax = random.randint(4,8)
+ymax2 = ymax
+x1 = random.randint(1, ymax)
+y1 = random.randint(1, xmax)
+x3 = random.randint(1, ymax)
+y3 = random.randint(1, xmax)
+
+working = 0
+move = 0
+map = 0
+level = 1
+
+print("=====================================")
+print("w - up")
+print("a - left")
+print("s - down")
+print("d - right")
+print("r - restart")
+print("x - plater")
+print("$ - scorepoint")
+print("=====================================")
+print("")
+print("")
+print("")
+print("Level:", level)
+print("")
+
+
+while working == 0:
+#====================================================================
+#map generator
+#====================================================================
+    if x1 == x3 and y1 == y3:
+        level += 1
+        xmax = random.randint(4,8)
+        ymax = random.randint(4,8)
+        ymax2 = ymax
+        x1 = random.randint(1, ymax)
+        y1 = random.randint(1, xmax)
+        x3 = random.randint(1, ymax)
+        y3 = random.randint(1, xmax)
+
+    print("")
+    print("Level:", level)
+    print("")
+
+    while map < ymax2:
+
+        if x1 != x2 and x3 != x2:
+            count = 0
+            while count < xmax:
+                print('o ', end='')
+                count +=1
+            print("")
+
+
+        else:
+            if x1 == x2 and x3 == x2:
+                if y3 < y1:
+                    count = 1
+                    count2 = 0
+                    while count < y3:
+                        print('o ', end='')
+                        count += 1
+
+                    print('$ ', end='')
+                    count +=1
+                    while count < y1:
+                        print('o ', end='')
+                        count += 1
+
+                    print('x ', end='')
+                    count = xmax - count
+
+                    if y1 < xmax:
+                        while count2 < count:
+                            print('o ', end='')
+                            count2 += 1
+                        print("")
+
+                    else:
+                        print("")
+                else:
+                    count = 1
+                    count2 = 0
+                    while count < y1:
+                        print('o ', end='')
+                        count += 1
+
+                    print('x ', end='')
+                    count +=1
+                    while count < y3:
+                        print('o ', end='')
+                        count += 1
+
+                    print('$ ', end='')
+                    count = xmax - count
+
+                    if y3 < xmax:
+                        while count2 < count:
+                            print('o ', end='')
+                            count2 += 1
+                        print("")
+
+                    else:
+                        print("")
+
+            if x1 == x2 and x3 != x2:
+                count = 1
+                count2 = 0
+
+                while count < y1:
+                    print('o ', end='')
+                    count += 1
+                print('x ', end='')
+                count = xmax - count
+
+                if y1 < xmax:
+                    while count2 < count:
+                        print('o ', end='')
+                        count2 += 1
+                    print("")
+
+                else:
+                    print("")
+
+            if x1 != x2 and x3 == x2:
+                count = 1
+                count2 = 0
+
+                while count < y3:
+                    print('o ', end='')
+                    count += 1
+                print('$ ', end='')
+                count = xmax - count
+
+                if y3 < xmax:
+                    while count2 < count:
+                        print('o ', end='')
+                        count2 += 1
+                    print("")
+
+                else:
+                    print("")
+
+        map += 1
+        y2 += 1
+        x2 += 1
+    move = 0
+    x2 = 1
+    y2 = 1
+    map = 0
+
+    print("")
+    print("")
+    print("")
+    print("=====================================")
+    print("")
+    print("")
+    print("")
+
+#====================================================================
+#movement system
+#====================================================================
+    while move == 0:
+        direction = (input())
+        if direction == "w":
+            x1 = x1 - 1
+            if x1 < 1:
+                x1 = 1
+
+        if direction == "a":
+            y1 = y1 - 1
+            if y1 < 1:
+                y1 = 1
+
+        if direction == "s":
+            x1 = x1 + 1
+            if x1 > ymax:
+                x1 = ymax
+
+        if direction == "d":
+            y1 = y1 + 1
+            if y1 > xmax:
+                y1 = xmax
+
+        if direction == "r":
+            xmax = random.randint(4,8)
+            ymax = random.randint(4,8)
+            ymax2 = ymax
+            x1 = random.randint(1, ymax)
+            y1 = random.randint(1, xmax)
+            x3 = random.randint(1, ymax)
+            y3 = random.randint(1, xmax)
+            break
+
+        move = 1
+
+else:
+    input()
